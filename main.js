@@ -7,9 +7,10 @@ const Cookie = require('@hapi/cookie');
 const routes = require("./routes.js");
 const repositorio = require("./repositorio.js");
 
+var port = process.env.PORT || 8080;
 // Servidor
 const server = Hapi.server({
-    port: process.env.PORT || 8080,
+    port: port,
     host: 'localhost',
 });
 
@@ -95,7 +96,7 @@ const iniciar_server = async () => {
             }
         });
         await server.start();
-        console.log('Servidor localhost:8080');
+        console.log('Servidor localhost:' + port);
     } catch (error) {
         console.log('Error ' + error);
     }
