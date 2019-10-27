@@ -1,0 +1,55 @@
+<section class="uk-section">
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
+
+        <form method="post" action="/formularios/{{ id }}/favoritos">
+            <button class="uk-button uk-button-secondary uk-width-1-1
+                                uk-margin-small-bottom" type="submit">
+                Añadir a favoritos
+            </button>
+        </form>
+
+        <form method="post" action="/formularios/{{ id }}/responder">
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">{{ formulario.titulo }}:</legend>
+
+                {{#each formulario.preguntas}}
+                {{#if (equals tipo "Texto")}}
+                <div class="uk-grid uk-margin">
+                    <div class="uk-width-1-1">
+                        <label class="uk-form-label">{{ valor }}:</label>
+                        <input class="uk-input" type="text" name="{{ pos }}"
+                               placeholder="Introduzca una cadena de texto">
+                    </div>
+                </div>
+                {{/if}}
+                {{#if (equals tipo "Numero")}}
+                <div class="uk-grid uk-margin">
+                    <div class="uk-width-1-1">
+                        <label class="uk-form-label">{{ valor }}:</label>
+                        <input class="uk-input" type="number" name="{{ pos }}"
+                               placeholder="Introduzca un valor numérico">
+                    </div>
+                </div>
+                {{/if}}
+                {{#if (equals tipo "Opciones")}}
+                <div class="uk-grid uk-margin">
+                    <div class="uk-width-1-1">
+                        <label class="uk-form-label">{{ valor }}:</label>
+                        {{#each opciones}}
+                        <br><input class="uk-radio" type="radio" name="{{ ../pos }}" value="{{ this }}">{{
+                        this }}
+                        {{/each}}
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+
+                <button class="uk-button uk-button-primary uk-width-1-1
+                            uk-margin-small-bottom"
+                        type="submit">
+                    Responder
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</section>

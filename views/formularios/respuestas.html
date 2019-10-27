@@ -1,0 +1,27 @@
+<section class="uk-section">
+    <div class="uk-container">
+        <div class="uk-overflow-auto">
+            <h1 class="uk-heading-divider">{{titulo}}</h1>
+            <ul class="uk-list uk-list-divider">
+                {{#each preguntas}}
+                    <li>{{valor}}: <button class="uk-button uk-button-default"  onclick="myFunction('{{valor}}')">Mostrar/Ocultar</button></li>
+                    <ul id = "{{valor}}" class="uk-list uk-list-divider">
+                        {{#each respuestas}}
+                            <li>{{respuesta}} ({{usuario}})</li>
+                        {{/each}}
+                    </ul>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</section>
+<script>
+    function myFunction(a) {
+        var x = document.getElementById(a);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

@@ -1,0 +1,31 @@
+<section class="uk-section">
+    <div class="uk-container">
+        <div class="uk-child-width-1-3@m" uk-grid>
+
+            {{#each formularios}}
+                <a class="uk-link-toggle" href="/formularios/{{ _id }}/responder">
+                    <div class="dashboard uk-card-secondary uk-card uk-card-body uk-card-large uk-height-medium">
+                        <div class="uk-card-title">
+                            <h3>{{ titulo }}</h3>
+                        </div>
+                        <hr>
+                        <div>
+                            <p>{{ descripcion }}</p>
+                        </div>
+                    </div>
+                </a>
+            {{/each}}
+        </div>
+    </div>
+
+    <ul id="pages" class="uk-pagination uk-flex-center" uk-margin>
+        {{#each paginas}}
+
+        <li class="{{ clase }}">
+            <a href="/formularios/favoritos?pg={{valor}}">{{valor}}</a>
+        </li>
+
+        {{/each}}
+    </ul>
+</section>
+<script src="/js/overCards.js"></script>

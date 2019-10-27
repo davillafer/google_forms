@@ -1,0 +1,45 @@
+<section id="tabla-section" class="uk-section">
+    <div class="uk-container">
+        <div id="tabla" class="uk-overflow-auto">
+            <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+                <thead>
+                <tr>
+                    <th class="uk-table-expand">Titulo</th>
+                    <th class="uk-width-small">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each formularios}}
+                <tr>
+                    <td >{{ titulo }}</td>
+                    <td>
+                        <a class="uk-link" href="/formularios/{{_id}}/respuestas">
+                            <span  uk-icon="list"></span>
+                            Respuestas
+                        </a> <br>
+                        <a class="uk-link" href="/formularios/{{_id}}/modificar">
+                            <span  uk-icon="pencil"></span>
+                            Modificar
+                        </a> <br>
+                        <a class="uk-link" href="/formularios/{{_id}}/eliminar">
+                            <span  uk-icon="trash"></span>
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <ul id="pages" class="uk-pagination uk-flex-center" uk-margin>
+            {{#each paginas}}
+
+                <li class="{{ clase }}">
+                    <a href="/formularios/propios?pg={{valor}}">{{valor}}</a>
+                </li>
+
+            {{/each}}
+        </ul>
+    </div>
+</section>

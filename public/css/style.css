@@ -1,0 +1,48 @@
+html {
+    background: lightgrey;
+}
+
+body {
+    background: lightgrey;
+    height: 100%;
+}
+
+header {
+    background: white;
+}
+
+.btn-group {
+    width: 100%;
+}
+
+.btn-group > button {
+    width: 33%;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dashboard:hover {
+    border: 2px solid #3a7999;
+}
+
+#tabla {
+    background: white;
+}
+
+#pages > li > a {
+    color: black;
+}
+
+#tabla-section {
+    width: 100%;
+}
