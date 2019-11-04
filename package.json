@@ -1,9 +1,6 @@
 {
   "name": "web",
   "version": "0.0.1",
-  "scripts": {
-    "start": "node main.js"
-  },
   "dependencies": {
     "@hapi/address": "^3.1.0",
     "@hapi/cookie": "^10.1.2",

@@ -1,20 +1,47 @@
-<section class="uk-section">
+<section class="uk-section" >
     <div class="uk-container">
-        <div class="uk-overflow-auto">
-            <h1 class="uk-heading-divider">{{titulo}}</h1>
-            <ul class="uk-list uk-list-divider">
-                {{#each preguntas}}
-                    <li>{{valor}}: <button class="uk-button uk-button-default"  onclick="myFunction('{{valor}}')">Mostrar/Ocultar</button></li>
-                    <ul id = "{{valor}}" class="uk-list uk-list-divider">
-                        {{#each respuestas}}
-                            <li>{{respuesta}} ({{usuario}})</li>
-                        {{/each}}
-                    </ul>
-                {{/each}}
-            </ul>
+        <div class="uk-card uk-card-default uk-card-body uk-align-center">
+            <div class="uk-overflow-auto">
+                <div class="uk-align-right ajuste">
+                    <button class="uk-button uk-margin-small-bottom" onclick="showAll()">
+                        <span class="uk-margin-small-right" uk-tooltip="Muestra todas las respuestas" uk-icon="plus-circle"></span>
+                    </button>
+                    <button class="uk-button uk-margin-small-bottom" onclick="closeAll()">
+                        <span class="uk-margin-small-right" uk-tooltip="Oculta todas las respuestas" uk-icon="minus-circle"></span>
+                    </button>
+                </div>
+                <h1 class="uk-heading-divider">{{titulo}}</h1>
+                <ul class="uk-list">
+                    {{#each preguntas}}
+                        <li>
+                            <div>
+                                <h4>{{valor}}:</h4>
+                                Mostrar resultados:
+                                <label class="switch">
+                                    <input type="checkbox" onclick="myFunction('{{valor}}')" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </li>
+                        <br>
+                        <ul id = "{{valor}}" class="uk-list uk-list-divider respuestas">
+                            {{#each respuestas}}
+                                <li>
+                                    <div class="own-row">
+                                        <div class="own-row-show">{{respuesta}}</div>
+                                        <div class="own-row-hide">Respuesta del usuario [<strong>{{usuario}}</strong>]</div>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                        <br><br>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
     </div>
 </section>
+
 <script>
     function myFunction(a) {
         var x = document.getElementById(a);
@@ -22,6 +49,28 @@
             x.style.display = "block";
         } else {
             x.style.display = "none";
+        }
+    }
+
+    function closeAll() {
+        let allRes = document.getElementsByClassName('respuestas');
+        let all = document.getElementsByTagName('input');
+        for(let i = 0; i<all.length; i++) {
+            if(all[i].checked) {
+                all[i].checked = false;
+                allRes[i].style.display = "none";
+            }
+        }
+    }
+
+    function showAll() {
+        let allRes = document.getElementsByClassName('respuestas');
+        let all = document.getElementsByTagName('input');
+        for(let i = 0; i<all.length; i++) {
+            if(!all[i].checked) {
+                all[i].checked = true;
+                allRes[i].style.display = "block";
+            }
         }
     }
 </script>

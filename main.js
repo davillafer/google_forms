@@ -7,10 +7,10 @@ const Cookie = require('@hapi/cookie');
 const routes = require("./routes.js");
 const repositorio = require("./repositorio.js");
 
-var port = process.env.PORT || 8080;
 // Servidor
+var port = process.env.PORT || 8080;
 const server = Hapi.server({
-    port: port
+    port: port,
 });
 
 // Declarar métodos comunes
@@ -65,11 +65,16 @@ const iniciar_server = async () => {
         });
 
         handlebars.registerHelper("equals", (a, b) => {
-                if(a == b) // Or === depending on your needs
-                    return true;
-                else
-                    return false;
+            if(a == b) // Or === depending on your needs
+                return true;
+            else
+                return false;
         });
+
+        handlebars.registerHelper("empty", (a) => {
+            return a.length == 0
+        });
+
 
         handlebars.registerHelper("showElement", (a) => {
             return function myFunction(a) {
@@ -95,7 +100,7 @@ const iniciar_server = async () => {
             }
         });
         await server.start();
-        console.log('Servidor:' + port);
+        console.log('Servidor localhost:8080');
     } catch (error) {
         console.log('Error ' + error);
     }

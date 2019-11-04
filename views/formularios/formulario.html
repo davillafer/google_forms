@@ -1,15 +1,19 @@
 <section class="uk-section">
     <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
 
-        <form method="post" action="/formularios/{{ id }}/favoritos">
-            <button class="uk-button uk-button-secondary uk-width-1-1
-                                uk-margin-small-bottom" type="submit">
-                Añadir a favoritos
-            </button>
-        </form>
-
-        <form method="post" action="/formularios/{{ id }}/responder">
-            <fieldset class="uk-fieldset">
+        <fieldset class="uk-fieldset">
+            {{#if formulario.fav}}
+            <form method="post" action="/formularios/favoritos/delete/{{ id }}">
+                <button type="submit" class="heart fav">
+                </button>
+            </form>
+            {{else}}
+            <form method="post" action="/formularios/{{ id }}/favoritos">
+                <button type="submit" class="heart">
+                </button>
+            </form>
+            {{/if}}
+            <form method="post" action="/formularios/{{ id }}/responder">
                 <legend class="uk-legend">{{ formulario.titulo }}:</legend>
 
                 {{#each formulario.preguntas}}
@@ -49,7 +53,8 @@
                         type="submit">
                     Responder
                 </button>
-            </fieldset>
-        </form>
+            </form>
+        </fieldset>
     </div>
 </section>
+<script src="/js/heart.js"></script>

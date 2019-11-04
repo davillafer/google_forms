@@ -5,10 +5,36 @@ html {
 body {
     background: lightgrey;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     background: white;
+}
+
+.site {
+    display: flex;
+    min-height: 90vh;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+    color: black;
+    padding: 20px 0px;
+    text-align: center;
+}
+
+.footer {
+    background: white;
+    text-align: center;
+    padding: 20px;
 }
 
 .btn-group {
@@ -19,20 +45,73 @@ header {
     width: 33%;
 }
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    color: black;
+#usuario-conectado {
     text-align: center;
-    box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 5px;
+    font-size: 16px;
+}
+
+.heart {
+    border: 0;
+    background-color: inherit;
+    cursor: pointer;
+    float: right;
+    height: 40px;
+    width: 80px;
+    background-image:url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size:2900%;
+}
+
+.fav {
+    background-position:right;
+}
+
+.heart:hover {
+    background-position:right;
+}
+
+.is_animating {
+    animation: heart-burst .8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+    from {background-position:left;}
+    to { background-position:right;}
+}
+
+.dashboard {
+    background: white;
+    border: none;
+    padding: 1vw;
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    margin: 1vw;
+    transition: 1.5s;
+    height: 270px;
 }
 
 .dashboard:hover {
-    border: 2px solid #3a7999;
+    background-color: black;
+    color: white;
+}
+
+h3, .uk-h3 {
+    height: 75px;
+}
+
+.dashboard:hover > a > div > h3{
+    color: white;
+}
+
+.dashboard > p {
+    text-align: center;
+}
+
+.dashboard:hover > p {
+    color: white;
 }
 
 #tabla {
@@ -46,3 +125,164 @@ footer {
 #tabla-section {
     width: 100%;
 }
+
+.grid-container {
+    position: relative;
+    display: grid;
+    grid-template-areas: "search-input-1 search-input-2"
+    "search-button-1 search-button-1"
+}
+
+.search-input-1{
+    grid-area: search-input-1;
+}
+
+.search-input-2{
+    grid-area: search-input-2;
+}
+
+.search-button-1{
+    grid-area: search-button-1;
+}
+
+#buscador {
+    padding-right: 15px;
+}
+
+.switch {
+    vertical-align: -20%;
+    position: relative;
+    display: inline-block;
+    width: 1.875em;
+    height: 1.062em;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 0.812em;
+    width: 0.812em;
+    left: 0.125em;
+    bottom: 0.125em;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(0.812em);
+    -ms-transform: translateX(0.812em);
+    transform: translateX(0.812em);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 0.796em;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#pages li a {
+    font-size: 150%;
+}
+
+.link-block{
+    display: block;
+}
+
+.own-row{
+    display: grid;
+    grid-template-areas: "own-row-show own-row-hide"
+}
+
+.own-row-show{
+    grid-area: own-row-show;
+    margin: auto auto auto 0%;
+}
+
+.own-row-hide{
+    grid-area: own-row-hide;
+    margin: auto 0% auto auto;
+}
+
+.own-row .own-row-hide{
+    display: none;
+}
+
+.own-row:hover .own-row-hide{
+    display: inline-flex;
+}
+
+.own-row-hide > a {
+    padding-right: 25px;
+}
+
+.own-row-hide:hover{
+    display: block;
+}
+
+
+.modal-grid-container{
+    position: relative;
+    display: grid;
+    grid-template-areas: "modal-grid-element-1 modal-grid-element-1 modal-grid-element-1 modal-grid-element-1 modal-grid-element-1 modal-grid-element-1 modal-grid-element-1 modal-grid-element-2"
+}
+
+.modal-grid-element-1{
+    grid-area: modal-grid-element-1;
+}
+
+.modal-grid-element-2{
+    grid-area: modal-grid-element-2;
+    text-align: center;
+    margin: auto;
+}
+
+.ajuste > button,
+.ajuste > button:hover,
+.ajuste > button:active {
+    background-color: white;
+    color: black;
+}
+
+.trash {
+    border: 0;
+    background-color: inherit;
+    cursor: pointer;
+    float: right;
+    height: 40px;
+    width: 80px;
+}
+
+.own-more-hide{
+    display: none;
+}
+

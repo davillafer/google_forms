@@ -1,0 +1,17 @@
+<section class="uk-section" >
+    <div class="uk-container">
+        <div class="uk-card uk-card-default uk-card-body uk-align-center">
+            <div class="uk-overflow-auto">
+                <h1 class="uk-heading-divider">{{formulario.titulo}}</h1>
+                <h2 class = "uk-heading">Descripcion</h2>
+                <p>{{formulario.descripcion}}</p>
+                <h2 class = "uk-heading">Preguntas</h2>
+                <ul class="uk-list uk-list-divider">
+                    {{#each formulario.preguntas}}
+                    <li>{{valor}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

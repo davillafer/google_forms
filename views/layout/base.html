@@ -23,6 +23,8 @@
 <script>
     var mensaje = getUrlParameter('mensaje');
     var tipoMensaje = getUrlParameter('tipoMensaje');
+    console.log(mensaje);
+    console.log(tipoMensaje);
 
     if ( mensaje != ""){
         if (tipoMensaje == "" ){
@@ -40,9 +42,6 @@
     };
 </script>
 
-
-
-<!--HEADER-->
 <header class="uk-box-shadow-small">
     <div class="uk-container uk-container-expand">
         <nav class="uk-navbar" data-uk-navbar>
@@ -52,32 +51,37 @@
 
             <div class="uk-navbar-right">
                 <!-- uk-visible@m Lo visualiza en pantallas más pequeñas de m-->
-                <ul class="uk-navbar-nav uk-visible@m">
-                    <li>
-                        <a href="/formularios/favoritos">
-                            <span data-uk-icon="heart"
-                                  class="uk-margin-small-right">
-                            </span>Formularios Favoritos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/formularios/publicos">
-                            <span data-uk-icon="list"
-                                  class="uk-margin-small-right">
-                            </span>Formularios Públicos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/formularios/propios">
-                            <span data-uk-icon="list"
-                                  class="uk-margin-small-right">
-                            </span>Mis Formularios
-                        </a>
-                    </li>
+                <ul class="uk-navbar-nav uk-visible@l">
+                    <div class="uk-navbar-item">
+                        <li>
+                            <a href="/formularios/favoritos" class="uk-button uk-button-default uk-visible@l">
+                                <span data-uk-icon="heart"
+                                      class="uk-margin-small-right">
+                                </span>Formularios Favoritos
+                            </a>
+                        </li>
+                    </div>
+                    <div class="uk-navbar-item">
+                        <li>
+                            <a href="/formularios/publicos" class="uk-button uk-button-default uk-visible@l">
+                                <span data-uk-icon="thumbnails"
+                                      class="uk-margin-small-right">
+                                </span>Formularios Públicos
+                            </a>
+                        </li>
+                    </div>
+                    <div class="uk-navbar-item">
+                        <li>
+                            <a href="/formularios/propios" class="uk-button uk-button-default uk-visible@l">
+                                <span data-uk-icon="list"
+                                      class="uk-margin-small-right">
+                                </span>Mis Formularios
+                            </a>
+                        </li>
+                    </div>
                 </ul>
                 <div class="uk-navbar-item">
-                    <a href="/formularios/crear"
-                       class="uk-button uk-button-primary uk-visible@m">
+                    <a href="/formularios/crear" class="uk-button uk-button-primary uk-visible@l">
                         <span data-uk-icon="plus-circle"
                               class="uk-margin-small-right">
                         </span>Crear Formulario
@@ -86,30 +90,31 @@
 
                 {{#if usuarioAutenticado}}
                 <div class="uk-navbar-item">
-                    <div class="uk-button uk-button-default uk-visible@m">
-                         {{usuarioAutenticado}}
+                    <div id="usuario-conectado">
+                        <span data-uk-icon="user"></span> {{usuarioAutenticado}}
                     </div>
+                </div>
+                <div class="uk-navbar-item">
                     <a href="/desconectarse"
-                       class="uk-button uk-button-default uk-visible@m">
+                       class="uk-button uk-button-default uk-visible@l">
                         <span data-uk-icon="sign-in"
                               class="uk-margin-small-right">
                         </span>Desconectarse
                     </a>
                 </div>
-                {{/if}}
-                {{^usuarioAutenticado}}
+                {{else}}
                 <div class="uk-navbar-item">
                     <a href="/login"
-                       class="uk-button uk-button-default uk-visible@m">
+                       class="uk-button uk-button-default uk-visible@l">
                         <span data-uk-icon="sign-in"
                               class="uk-margin-small-right">
                         </span>Acceder
                     </a>
                 </div>
-                {{/usuarioAutenticado}}
+                {{/if}}
 
                 <!-- Menú de movil lo oculta en pantallas mayores de m-->
-                <div class="uk-navbar-item uk-hidden@m">
+                <div class="uk-navbar-item uk-hidden@l">
                     <a class="uk-navbar-toggle"
                        data-uk-toggle data-uk-navbar-toggle-icon
                        href="#offcanvas-nav">
@@ -124,59 +129,59 @@
 <div id="offcanvas-nav"
      data-uk-offcanvas="flip: true; overlay: true">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
-        <button
-                class="uk-offcanvas-close uk-close uk-icon"
-                type="button"
-                data-uk-close>
-        </button>
+        <button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
         <ul class="uk-nav uk-nav-default">
-            <li class="uk-nav-header">Forms</li>
+            <li class="uk-nav-header">Menu</li>
             <li>
-                <a href="/public_forms">
-                    <span class="uk-margin-small-right uk-icon"
-                          data-uk-icon="icon: heart">
-                    </span>Public forms
+                <a href="/formularios/favoritos">
+                    <span data-uk-icon="icon: heart" class="uk-margin-small-right uk-icon"></span>
+                    Formularios Favoritos
                 </a>
             </li>
             <li>
-                <a href="/own_forms">
-                    <span class="uk-margin-small-right uk-icon"
-                          data-uk-icon="icon: list">
-                    </span>Own Forms
+                <a href="/formularios/publicos">
+                    <span data-uk-icon="icon: thumbnails" class="uk-margin-small-right uk-icon"></span>
+                    Formularios Públicos
                 </a>
             </li>
             <li>
-                <a href="/create_form">
-                    <span class="uk-margin-small-right uk-icon"
-                          data-uk-icon="icon: plus-circle">
-                    </span>Create form
+                <a href="/formularios/propios">
+                    <span data-uk-icon="icon: list" class="uk-margin-small-right uk-icon"></span>
+                    Mis Formularios
                 </a>
             </li>
+            <li>
+                <a href="/formularios/crear">
+                    <span data-uk-icon="icon: plus-circle" class="uk-margin-small-right uk-icon"></span>
+                    Crear Formulario
+                </a>
+            </li>
+            {{#if usuarioAutenticado}}
+            <li>
+                <a href="/desconectarse">
+                    <span data-uk-icon="icon: sign-in" class="uk-margin-small-right uk-icon"></span>
+                    Desconectarse
+                </a>
+            </li>
+            {{else}}
             <li>
                 <a href="/login">
-                    <span class="uk-margin-small-right uk-icon"
-                          data-uk-icon="icon: sign-in">
-                    </span>Sign in
+                    <span data-uk-icon="icon: sign-in" class="uk-margin-small-right uk-icon"></span>
+                    Acceder
                 </a>
             </li>
+            {{/if}}
         </ul>
     </div>
 </div>
 
-{{{content}}}
-
-<!--FOOTER-->
-<footer>
-    <div class="uk-section uk-section-xsmall">
-        <div class="uk-container">
-            <div class="uk-grid uk-child-width-1-2@s uk-text-center uk-text-left@s" data-uk-grid>
-                <div class="uk-text-small">
-                    Copyright 2019 - Todos los derechos.
-                </div>
-            </div>
+    <div class="site">
+        <main class="site-content">
+            {{{content}}}
+        </main>
+        <div class="footer">
+            <p>Copyright 2019 - Todos los derechos.</p>
         </div>
     </div>
-</footer>
-
 </body>
 </html>

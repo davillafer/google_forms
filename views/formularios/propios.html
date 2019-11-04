@@ -1,45 +1,152 @@
 <section id="tabla-section" class="uk-section">
     <div class="uk-container">
+        {{#if (empty formularios)}}
+        <div class="uk-card uk-card-default uk-card-body uk-align-center">
+            <p class="uk-text-lead uk-text-center">No se ha encontrado resultados para su busqueda</p>
+            <img class="uk-align-center" src="/images/lupa.png" alt="Lupa">
+        </div>
+        {{else}}
+        <div class="uk-card uk-card-default uk-card-small uk-card-body uk-width-1-6">
+            {{#if (equals resultados "1")}}
+            <p class="uk-text-meta">{{resultados}} formulario propio</p>
+            {{else}}
+            <p class="uk-text-meta">{{resultados}} formularios propios</p>
+            {{/if}}
+        </div>
+        <br>
         <div id="tabla" class="uk-overflow-auto">
             <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
                 <thead>
                 <tr>
                     <th class="uk-table-expand">Titulo</th>
-                    <th class="uk-width-small">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each formularios}}
                 <tr>
-                    <td >{{ titulo }}</td>
-                    <td>
-                        <a class="uk-link" href="/formularios/{{_id}}/respuestas">
-                            <span  uk-icon="list"></span>
-                            Respuestas
-                        </a> <br>
-                        <a class="uk-link" href="/formularios/{{_id}}/modificar">
-                            <span  uk-icon="pencil"></span>
-                            Modificar
-                        </a> <br>
-                        <a class="uk-link" href="/formularios/{{_id}}/eliminar">
-                            <span  uk-icon="trash"></span>
-                            Eliminar
-                        </a>
+                    <td class="own-row"><div class="own-row-show">{{ titulo }}</div>
+                        <div class="own-row-hide" onmouseleave="toggle_visibility_down('{{_id}}_1', '{{_id}}_2', '{{_id}}_3');">
+                            <a class="uk-link" href="/formularios/{{_id}}/respuestas">
+                                <span uk-icon="list"></span>
+                                Respuestas
+                            </a> <br>
+                            <a class="uk-link" href="/formularios/{{_id}}/modificar">
+                                <span uk-icon="pencil"></span>
+                                Modificar
+                            </a> <br>
+                            <a class="uk-link" href="/formularios/{{_id}}/eliminar">
+                                <span uk-icon="trash"></span>
+                                Eliminar
+                            </a>
+                            <a id = "{{_id}}_1" class="uk-link" href="#" onmouseenter="toggle_visibility_up('{{_id}}_1', '{{_id}}_2', '{{_id}}_3');">
+                                <span uk-icon="more"></span>
+                            </a>
+
+                            <a class="uk-link own-more-hide" id = "{{_id}}_2" href="/formularios/{{_id}}/ver">
+                                <span uk-icon="search"></span>
+                                Ver
+                            </a>
+                            <a class="uk-link own-more-hide" id = "{{_id}}_3" uk-toggle="target: #my_id_{{_id}}">
+                                <span uk-icon="social"></span>
+                                Compartir
+                            </a>
+
+                            <div class="uk-modal" id="my_id_{{_id}}" uk-modal>
+                                <div class="uk-modal-dialog">
+                                    <div class="uk-modal-header">Compartir formulario</div>
+                                    <div class = "modal-grid-container">
+                                        <div class = "modal-grid-element-1">
+                                            <input class="uk-input calculate-url" type="text" value="" id="{{_id}}_4">
+                                        </div>
+                                        <div class = "modal-grid-element-2">
+                                            <button onclick="toClipboard('{{_id}}_4')">
+                                                <span data-uk-icon="copy"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                 </tr>
+
                 {{/each}}
                 </tbody>
             </table>
         </div>
+        {{/if}}
 
         <ul id="pages" class="uk-pagination uk-flex-center" uk-margin>
             {{#each paginas}}
 
-                <li class="{{ clase }}">
-                    <a href="/formularios/propios?pg={{valor}}">{{valor}}</a>
-                </li>
+            <li class="{{ clase }}">
+                <a href="/formularios/propios?pg={{valor}}">{{valor}}</a>
+            </li>
 
             {{/each}}
         </ul>
     </div>
 </section>
+
+<script>
+    var url = window.location.toString().split("/formularios")[0];
+    var elements = document.getElementsByClassName("calculate-url");
+
+    for(let i=0; i<elements.length; i++){
+        console.log(elements[i].value);
+        elements[i].value = url + "/formularios/" + elements[i].id.split("_4")[0] + "/responder";
+    }
+</script>
+
+<script>
+    var url = document.URL;
+    if (url.includes("pg=")) {
+        var lis = document.getElementById('pages');
+        var elements = lis.children;
+        for (let i = 0; i < elements.length; i++) {
+            var text = elements[i].children;
+            if (text[0].textContent == url.substr(url.length - 1)) {
+                text[0].style.fontWeight = "bold"
+            }
+
+        }
+    } else {
+        var lis = document.getElementById('pages');
+        var elements = lis.children;
+        var text = elements[0].children;
+        text[0].style.fontWeight = "bold"
+    }
+</script>
+
+<script>
+    function toClipboard(id) {
+        var copyText = document.getElementById(id);
+        copyText.select();
+        document.execCommand("Copy");
+    }
+</script>
+
+<script>
+    <!--
+    function toggle_visibility_up(id1, id2, id3) {
+        var id1 = document.getElementById(id1);
+        id1.style.display = 'none';
+
+        var id2 = document.getElementById(id2);
+        id2.style.display = 'block';
+
+        var id3 = document.getElementById(id3);
+        id3.style.display = 'block';
+    }
+    function toggle_visibility_down(id1, id2, id3) {
+        var id1 = document.getElementById(id1);
+        id1.style.display = 'block';
+
+        var id2 = document.getElementById(id2);
+        id2.style.display = 'none';
+
+        var id3 = document.getElementById(id3);
+        id3.style.display = 'none';
+    }
+    //-->
+</script>
