@@ -1,5 +1,9 @@
-## Google forms
-Simulación de los formularios de google. Proyecto desarrollado con NodeJS, Hapi, UIkit y Cloud.mongoDB.
+## Fake Google forms
+My implementation of google forms. Developed with NodeJS, Hapi, UIkit y Cloud.mongoDB.
 
-### Diseño y Programación de Interfaces de Usuario.
-Universidad de Oviedo. Máster en Ingeniería Web.
+1. npm i
+2. npm run start
+
+User for testing:
+email - davillafer@gmail.com
+password - davillafer
